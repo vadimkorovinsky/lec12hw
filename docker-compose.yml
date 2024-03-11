@@ -1,0 +1,42 @@
+---
+version: '3'
+
+services:
+    java:
+        build:
+            context: ./java
+            dockerfile: java.Dockerfile
+        volumes:
+            - myapp:/javaapp/App42PaaS-Java-MySQL-Sample/target
+            - ./config:/javaapp/App42PaaS-Java-MySQL-Sample/target
+
+    mysql:
+        build: 
+            context: ./mysql
+            dockerfile: mysql.Dockerfile
+
+            args:
+                - MYSQL_DATABASE='mydb'
+                - MYSQL_USER='root'
+                - MYSQL_PASSWORD='root'
+                - MYSQL_ROOT_PASSWORD='root'
+        ports:
+            - "3306:3306"
+
+        volumes:
+          - ./data:/docker-entrypoint-initdb.d
+
+    tomcat:
+        build:
+            context: ./tomcat
+            dockerfile: tomcat.Dockerfile
+        ports:
+            - '8080:8080'
+        volumes:
+            - myapp:/opt/tomcat/webapps
+            - ./config:/opt/tomcat/webapps
+        depends_on:
+            - java
+
+volumes:
+    myapp:
