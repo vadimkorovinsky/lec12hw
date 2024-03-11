@@ -35,6 +35,10 @@ services:
             - myapp:/opt/tomcat/webapps
             - ./config/Config.properties:/opt/apache-tomcat-8.5.37/webapps/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT/Config.properties
             - ./config/Config.properties:/opt/apache-tomcat-8.5.37/webapps/Config.properties
+            - ./config/Config.properties:/opt/apache-tomcat-8.5.37/ROOT/Config.properties
+            - ./config/Config.properties:/opt/tomcat/webapps/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT/Config.properties
+            - ./config/Config.properties:/opt/tomcat/webapps/Config.properties
+            - ./config/Config.properties:/usr/local/tomcat/ROOT/Config.properties
         depends_on:
             - java
             - mysql
