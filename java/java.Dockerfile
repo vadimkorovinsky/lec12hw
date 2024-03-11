@@ -6,6 +6,6 @@ WORKDIR /javaapp
 RUN cd /javaapp
 RUN git clone https://github.com/shephertz/App42PaaS-Java-MySQL-Sample.git
 RUN cd App42PaaS-Java-MySQL-Sample
-COPY Config.properties /javaapp/App42PaaS-Java-MySQL-Sample/WebContent
 WORKDIR /javaapp/App42PaaS-Java-MySQL-Sample
 RUN mvn package
+COPY Config.properties /javaapp/App42PaaS-Java-MySQL-Sample/target/

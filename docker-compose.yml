@@ -22,8 +22,8 @@ services:
         ports:
             - "3306:3306"
 
-        volumes:
-          - ./data:/docker-entrypoint-initdb.d
+        depends_on:
+          - java
 
     tomcat:
         build:
@@ -33,9 +33,9 @@ services:
             - '8080:8080'
         volumes:
             - myapp:/opt/tomcat/webapps
-            - ./config:/opt/tomcat/webapps
         depends_on:
             - java
+            - mysql
 
 volumes:
     myapp:

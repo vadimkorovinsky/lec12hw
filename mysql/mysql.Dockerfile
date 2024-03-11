@@ -1,4 +1,4 @@
-FROM mysql:5.7
+FROM mysql:5
 RUN chown -R mysql:root /var/lib/mysql/
 
 ARG MYSQL_DATABASE
@@ -13,4 +13,4 @@ ENV MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
 
 EXPOSE 3306
 
-CMD ["mysqld","--user","mysql"]
+CMD ["mysql","--user","mysql"]
